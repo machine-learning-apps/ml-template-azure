@@ -1,12 +1,6 @@
 # Actions train a model on Azure Machine Learning
-<<<<<<< HEAD:.github/workflows/train.yml
-name: aml-train
-on: [pull_request]
-
-=======
 name: aml-train-deploy-workflow 
 on: push
->>>>>>> simple_template:.github/workflows/train_deploy.yml
 jobs:
   train:
     runs-on: ubuntu-latest
@@ -37,16 +31,6 @@ jobs:
       with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
 
-<<<<<<< HEAD:.github/workflows/train.yml
-    - name: comment PR
-      uses: unsplash/comment-on-pr@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        msg: "${{ steps.aml_run.outputs.run_metrics }}"
-    
-=======
->>>>>>> simple_template:.github/workflows/train_deploy.yml
     # Register model in Azure Machine Learning model registry
     - name: Register model
       id: aml_registermodel
@@ -61,16 +45,6 @@ jobs:
       id: aml_deploy
       uses: Azure/aml-deploy@master
       with:
-<<<<<<< HEAD:.github/workflows/train.yml
-        msg: "${{ steps.aml_registermodel.outputs.model_id }}"
-
-    # - uses: actions/upload-artifact@v1
-    #   with:
-    #     name: ${{ steps.aml_run.outputs.model }}
-    #     path: SpatialSimOutputs
-
-=======
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           model_name:  ${{ steps.aml_registermodel.outputs.model_name }}
           model_version: ${{ steps.aml_registermodel.outputs.model_version }}
->>>>>>> simple_template:.github/workflows/train_deploy.yml
