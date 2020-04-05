@@ -10,14 +10,16 @@ This template can be used for easily setting up a data science or machine learni
 
 ## Contents
 
-| File/folder        | Description                                |
-| ------------------ | ------------------------------------------ |
-| `code`             | Sample data science source code that will be submitted to Azure Machine Learning to train and deploy machine learning models. |
-| `.github/workflows`| Folder for GitHub workflows. The `train_deploy.yml` sample workflow shows you how your can use the Azure Machine Learning GitHub Actions to automate the machine learning process. |
-| `.cloud/.azure`    | Configuration files for the Azure Machine Learning GitHub Actions. Please visit the repositories of the respective actions and read the documentation for more details. |
-| `CONTRIBUTING.md`  | Guidelines for contributing to the templates. |
-| `README.md`        | This README file.                          |
-| `LICENSE`          | The license for the sample.                |
+| File/folder          | Description                                |
+| -------------------- | ------------------------------------------ |
+| `code`               | Sample data science source code that will be submitted to Azure Machine Learning to train and deploy machine learning models. |
+| `.cloud/.azure`      | Configuration files for the Azure Machine Learning GitHub Actions. Please visit the repositories of the respective actions and read the documentation for more details. |
+| `.github/workflows`  | Folder for GitHub workflows. The `train_deploy.yml` sample workflow shows you how your can use the Azure Machine Learning GitHub Actions to automate the machine learning process. |
+| `docs`               | Resources for this README.                 |
+| `CODE_OF_CONDUCT.md` | Microsoft Open Source Code of Conduct.     |
+| `LICENSE`            | The license for the sample.                |
+| `README.md`          | This README file.                          |
+| `SECURITY.md`        | Microsoft Security README.                 |
 
 ## What is MLOps?
 
@@ -93,7 +95,7 @@ You will need to modify the code in the <a href="/code">`code` folder</a> with y
 
 Upon pushing the changes, actions will kick off your training and deployment run. Check the actions tab to view if your actions have successfully run. 
 
-### 6. Viewing your AML resources
+### 6. Viewing your AML resources and runs
 
 The log outputs of your action will provide URLs for you to view the resources that have been created in AML. Alternatively, you can visit the [Machine Learning Studio](https://ml.azure.com/) to view the progress of your runs, etc.
 
