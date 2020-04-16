@@ -8,39 +8,7 @@
 
 This template can be used for easily setting up a data science or machine learning project with automated training and deployment using [GitHub Actions](https://github.com/features/actions) and [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/). For a more comprehensive version of this automated pipeline, see the [aml-template](https://github.com/Azure/aml-template) repository.
 
-## Contents
-
-| File/folder          | Description                                |
-| -------------------- | ------------------------------------------ |
-| `code`               | Sample data science source code that will be submitted to Azure Machine Learning to train and deploy machine learning models. |
-| `.cloud/.azure`      | Configuration files for the Azure Machine Learning GitHub Actions. Please visit the repositories of the respective actions and read the documentation for more details. |
-| `.github/workflows`  | Folder for GitHub workflows. The `train_deploy.yml` sample workflow shows you how your can use the Azure Machine Learning GitHub Actions to automate the machine learning process. |
-| `docs`               | Resources for this README.                 |
-| `CODE_OF_CONDUCT.md` | Microsoft Open Source Code of Conduct.     |
-| `LICENSE`            | The license for the sample.                |
-| `README.md`          | This README file.                          |
-| `SECURITY.md`        | Microsoft Security README.                 |
-
-## What is MLOps?
-
-<p align="center">
-  <img src="docs/images/ml-lifecycle.png" alt="Azure Machine Learning Lifecycle" height="250"/>
-</p>
-
-MLOps empowers data scientists and machine learning engineers to bring together their knowledge and skills to simplify the process of going from model development to release/deployment. ML Ops enables you to track, version, test, certify and reuse assets in every part of the machine learning lifecycle and provides orchestration services to streamline managing this lifecycle. This allows practitioners to automate the end to end machine Learning lifecycle to frequently update models, test new models, and continuously roll out new ML models alongside your other applications and services.
-
-This repository enables Data Scientists to focus on the training and deployment code of their machine learning project (`code` folder of this repository). Once new code is checked into the `code` folder of the master branch of this repository the GitHub workflow is triggered and open source Azure Machine Learning actions are used to automatically manage the training through to deployment phases.
-
-## Azure Machine Learning GitHub Actions
-
-The template uses the following open source Azure certified Actions:
-- Creation of or attachment to an AML Workspace with [azure/aml-workspace](https://github.com/Azure/aml-workspace)
-- Managing Azure compute resources with [azure/aml-compute](https://github.com/Azure/aml-compute): 
-- Managing Azure Machine Learning experimentation and pipeline runs with [azure/aml-run](https://github.com/Azure/aml-run)
-- Model Registration in Azure Machine Learning with [azure/aml-registermodel](https://github.com/Azure/aml-registermodel) and
-- Deployment to Azure Container Instances or Azure Kubernetes Service with [azure/aml-deploy](https://github.com/Azure/aml-deploy)
-
-## Getting started
+# Getting started
 
 ### 1. Prerequisites
 
@@ -99,7 +67,41 @@ Upon pushing the changes, actions will kick off your training and deployment run
 
 The log outputs of your action will provide URLs for you to view the resources that have been created in AML. Alternatively, you can visit the [Machine Learning Studio](https://ml.azure.com/) to view the progress of your runs, etc.
 
-## Contributing
+# Documentation
+
+## Code structure
+
+| File/folder          | Description                                |
+| -------------------- | ------------------------------------------ |
+| `code`               | Sample data science source code that will be submitted to Azure Machine Learning to train and deploy machine learning models. |
+| `.cloud/.azure`      | Configuration files for the Azure Machine Learning GitHub Actions. Please visit the repositories of the respective actions and read the documentation for more details. |
+| `.github/workflows`  | Folder for GitHub workflows. The `train_deploy.yml` sample workflow shows you how your can use the Azure Machine Learning GitHub Actions to automate the machine learning process. |
+| `docs`               | Resources for this README.                 |
+| `CODE_OF_CONDUCT.md` | Microsoft Open Source Code of Conduct.     |
+| `LICENSE`            | The license for the sample.                |
+| `README.md`          | This README file.                          |
+| `SECURITY.md`        | Microsoft Security README.                 |
+
+## Documentation of Azure Machine Learning GitHub Actions
+
+The template uses the open source Azure certified Actions listed below. Click on the links and read the README files for more details.
+- [aml-workspace](https://github.com/Azure/aml-workspace) - Connects to or creates a new workspace
+- [aml-compute](https://github.com/Azure/aml-compute) - Connects to or creates a new compute target in Azure Machine Learning
+- [aml-run](https://github.com/Azure/aml-run) - Submits a ScriptRun, an Estimator or a Pipeline to Azure Machine Learning
+- [aml-registermodel](https://github.com/Azure/aml-registermodel) - Registers a model to Azure Machine Learning
+- [aml-deploy](https://github.com/Azure/aml-deploy) - Deploys a model and creates an endpoint for the model
+
+# What is MLOps?
+
+<p align="center">
+  <img src="docs/images/ml-lifecycle.png" alt="Azure Machine Learning Lifecycle" height="250"/>
+</p>
+
+MLOps empowers data scientists and machine learning engineers to bring together their knowledge and skills to simplify the process of going from model development to release/deployment. ML Ops enables you to track, version, test, certify and reuse assets in every part of the machine learning lifecycle and provides orchestration services to streamline managing this lifecycle. This allows practitioners to automate the end to end machine Learning lifecycle to frequently update models, test new models, and continuously roll out new ML models alongside your other applications and services.
+
+This repository enables Data Scientists to focus on the training and deployment code of their machine learning project (`code` folder of this repository). Once new code is checked into the `code` folder of the master branch of this repository the GitHub workflow is triggered and open source Azure Machine Learning actions are used to automatically manage the training through to deployment phases.
+
+# Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us

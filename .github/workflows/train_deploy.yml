@@ -13,28 +13,28 @@ jobs:
     # Connect or Create the Azure Machine Learning Workspace
     - name: Connect/Create Azure Machine Learning Workspace
       id: aml_workspace
-      uses: Azure/aml-workspace@master
+      uses: Azure/aml-workspace@v1.0.0
       with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
     
     # Connect or Create a Compute Target in Azure Machine Learning
     - name: Connect/Create Azure Machine Learning Compute Target
       id: aml_compute_training
-      uses: Azure/aml-compute@master
+      uses: Azure/aml-compute@v1.0.0
       with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
     
     # Submit a training run to the Azure Machine Learning
     - name: Submit training run
       id: aml_run
-      uses: Azure/aml-run@master
+      uses: Azure/aml-run@v1.0.0
       with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
 
     # Register model in Azure Machine Learning model registry
     - name: Register model
       id: aml_registermodel
-      uses: Azure/aml-registermodel@master
+      uses: Azure/aml-registermodel@v1.0.0
       with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           run_id:  ${{ steps.aml_run.outputs.run_id }}
@@ -43,7 +43,7 @@ jobs:
     # Deploy model in Azure Machine Learning to ACI
     - name: Deploy model
       id: aml_deploy
-      uses: Azure/aml-deploy@master
+      uses: Azure/aml-deploy@v1.0.0
       with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           model_name:  ${{ steps.aml_registermodel.outputs.model_name }}
