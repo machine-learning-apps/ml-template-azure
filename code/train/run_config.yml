@@ -17,100 +17,100 @@ maxRunDurationSeconds:
 nodeCount: 1
 # Environment details.
 environment:
-# Environment name
+  # Environment name
   name: data_gen_environment
-# Environment version
+  # Environment version
   version:
-# Environment variables set for the run.
+  # Environment variables set for the run.
   environmentVariables:
     EXAMPLE_ENV_VAR: EXAMPLE_VALUE
-# Python details
+  # Python details
   python:
-# user_managed_dependencies=True indicates that the environmentwill be user managed. False indicates that AzureML willmanage the user environment.
+    # user_managed_dependencies=True indicates that the environmentwill be user managed. False indicates that AzureML willmanage the user environment.
     userManagedDependencies: false
-# The python interpreter path
+    # The python interpreter path
     interpreterPath: python
-# Path to the conda dependencies file to use for this run. If a project
-# contains multiple programs with different sets of dependencies, it may be
-# convenient to manage those environments with separate files.
+    # Path to the conda dependencies file to use for this run. If a project
+    # contains multiple programs with different sets of dependencies, it may be
+    # convenient to manage those environments with separate files.
     condaDependenciesFile: environment.yml
-# The base conda environment used for incremental environment creation.
+    # The base conda environment used for incremental environment creation.
     baseCondaEnvironment:
-# Docker details
+  # Docker details
   docker:
-# Set True to perform this run inside a Docker container.
+    # Set True to perform this run inside a Docker container.
     enabled: true
-# Base image used for Docker-based runs. Mutually exclusive with base_dockerfile.
+    # Base image used for Docker-based runs. Mutually exclusive with base_dockerfile.
     baseImage: mcr.microsoft.com/azureml/base:intelmpi2018.3-ubuntu16.04
-# Base Dockerfile used for Docker-based runs. Mutually exclusive with base_image
+    # Base Dockerfile used for Docker-based runs. Mutually exclusive with base_image
     baseDockerfile:
-# Set False if necessary to work around shared volume bugs.
+    # Set False if necessary to work around shared volume bugs.
     sharedVolumes: true
-# Shared memory size for Docker container. Default is 2g.
+    # Shared memory size for Docker container. Default is 2g.
     shmSize: 2g
-# Extra arguments to the Docker run command.
+    # Extra arguments to the Docker run command.
     arguments: []
-# Image registry that contains the base image.
+    # Image registry that contains the base image.
     baseImageRegistry:
-# DNS name or IP address of azure container registry(ACR)
+      # DNS name or IP address of azure container registry(ACR)
       address:
-# The username for ACR
+      # The username for ACR
       username:
-# The password for ACR
+      # The password for ACR
       password:
-# Spark details
+  # Spark details
   spark:
-# List of spark repositories.
+    # List of spark repositories.
     repositories: []
-# The packages to use.
+    # The packages to use.
     packages: []
-# Whether to precache the packages.
+    # Whether to precache the packages.
     precachePackages: true
-# Databricks details
+  # Databricks details
   databricks:
-# List of maven libraries.
+    # List of maven libraries.
     mavenLibraries: []
-# List of PyPi libraries
+    # List of PyPi libraries
     pypiLibraries: []
-# List of RCran libraries
+    # List of RCran libraries
     rcranLibraries: []
-# List of JAR libraries
+    # List of JAR libraries
     jarLibraries: []
-# List of Egg libraries
+    # List of Egg libraries
     eggLibraries: []
-# R details
+  # R details
   r:
-# Inferencing stack version
+  # Inferencing stack version
   inferencingStackVersion:
 # History details.
 history:
-# Enable history tracking -- this allows status, logs, metrics, and outputs
-# to be collected for a run.
+  # Enable history tracking -- this allows status, logs, metrics, and outputs
+  # to be collected for a run.
   outputCollection: true
-# Whether to take snapshots for history.
+  # Whether to take snapshots for history.
   snapshotProject: true
-# Directories to sync with FileWatcher.
+  # Directories to sync with FileWatcher.
   directoriesToWatch:
   - logs
 # Spark configuration details.
 spark:
-# The Spark configuration.
+  # The Spark configuration.
   configuration:
     spark.app.name: Azure ML Experiment
     spark.yarn.maxAppAttempts: 1
 # HDI details.
 hdi:
-# Yarn deploy mode. Options are cluster and client.
+  # Yarn deploy mode. Options are cluster and client.
   yarnDeployMode: cluster
 # Tensorflow details.
 tensorflow:
-# The number of worker tasks.
+  # The number of worker tasks.
   workerCount: 1
-# The number of parameter server tasks.
+  # The number of parameter server tasks.
   parameterServerCount: 1
 # Mpi details.
 mpi:
-# When using MPI, number of processes per node.
+  # When using MPI, number of processes per node.
   processCountPerNode: 1
 # data reference configuration details
 dataReferences: {}
@@ -120,13 +120,13 @@ data: {}
 sourceDirectoryDataStore:
 # AmlCompute details.
 amlcompute:
-# VM size of the Cluster to be created.Allowed values are Azure vm sizes.The list of vm sizes is available in 'https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-sizes-specs
+  # VM size of the Cluster to be created.Allowed values are Azure vm sizes.The list of vm sizes is available in 'https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-sizes-specs
   vmSize:
-# VM priority of the Cluster to be created. Allowed values are:"dedicated" , "lowpriority".
+  # VM priority of the Cluster to be created. Allowed values are:"dedicated" , "lowpriority".
   vmPriority:
-# A bool that indicates if the cluster has to be retained after job completion.
+  # A bool that indicates if the cluster has to be retained after job completion.
   retainCluster: false
-# Name of the cluster to be created. If not specified, runId will be used as cluster name.
+  # Name of the cluster to be created. If not specified, runId will be used as cluster name.
   name:
-# Maximum number of nodes in the AmlCompute cluster to be created. Minimum number of nodes will always be set to 0.
+  # Maximum number of nodes in the AmlCompute cluster to be created. Minimum number of nodes will always be set to 0.
   clusterMaxNodeCount:
