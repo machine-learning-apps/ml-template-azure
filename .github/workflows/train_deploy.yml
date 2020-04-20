@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'code/*'
+    # paths:
+    #   - 'code/*'
 jobs:
   train:
     runs-on: ubuntu-latest
