@@ -1,7 +1,7 @@
 # ML Ops with GitHub Actions and Azure Machine Learning
 
 <p align="center">
-  <img src="docs/images/aml.png" height="80"/>
+  <img src="docs/images/aml.svg" height="80"/>
   <img src="https://i.ya-webdesign.com/images/a-plus-png-2.png" alt="plus" height="40"/>
   <img src="docs/images/actions.png" alt="Azure Machine Learning + Actions" height="80"/>
 </p>
@@ -24,7 +24,7 @@ If you don’t have an Azure subscription, create a free account before you begi
 To get started with ML Ops, simply create a new repo based off this template, by clicking on the green "Use this template" button:
 
 <p align="center">
-  <img src="https://help.github.com/assets/images/help/repository/use-this-template-button.png" alt="GitHub Template repository" height="150"/>
+  <img src="https://help.github.com/assets/images/help/repository/use-this-template-button.png" alt="GitHub Template repository" width="700"/>
 </p>
 
 ### 3. Setting up the required secrets
@@ -54,7 +54,7 @@ This will generate the following JSON output:
 Add this JSON output as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) with the name `AZURE_CREDENTIALS` in your GitHub repository:
 
 <p align="center">
-  <img src="docs/images/secrets.png" alt="GitHub Template repository" height="150"/>
+  <img src="docs/images/secrets.png" alt="GitHub Template repository" width="700"/>
 </p>
 
 To do so, click on the Settings tab in your repository, then click on Secrets and finally add the new secret with the name `AZURE_CREDENTIALS` to your repository.
@@ -127,7 +127,7 @@ This error message appears, in case the `Azure/aml-workspace` action tries to cr
 # What is MLOps?
 
 <p align="center">
-  <img src="docs/images/ml-lifecycle.png" alt="Azure Machine Learning Lifecycle" height="250"/>
+  <img src="docs/images/ml-lifecycle.png" alt="Azure Machine Learning Lifecycle" width="700"/>
 </p>
 
 MLOps empowers data scientists and machine learning engineers to bring together their knowledge and skills to simplify the process of going from model development to release/deployment. ML Ops enables you to track, version, test, certify and reuse assets in every part of the machine learning lifecycle and provides orchestration services to streamline managing this lifecycle. This allows practitioners to automate the end to end machine Learning lifecycle to frequently update models, test new models, and continuously roll out new ML models alongside your other applications and services.
