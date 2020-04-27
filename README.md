@@ -32,7 +32,8 @@ To get started with ML Ops, simply create a new repo based off this template, by
 Install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your computer or use the Cloud CLI and execute the following command to generate the required credentials:
 
 ```sh
-# Replace {service-principal-name}, {subscription-id} and {resource-group} with your Azure subscription id and resource group name and any name for your service principle
+# Replace {service-principal-name}, {subscription-id} and {resource-group} with your 
+# Azure subscription id and resource group name and any name for your service principle
 az ad sp create-for-rbac --name {service-principal-name} \
                          --role contributor \
                          --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group} \
@@ -74,7 +75,7 @@ Once you save your changes to the file, the predefined GitHub workflow that trai
 Now you can start modifying the code in the <a href="/code">`code` folder</a>, so that your model and not the provided sample model gets trained on Azure. Where required, modify the environment yaml so that the training and deployment environments will have the correct packages installed in the conda environment for your training and deployment.
 Upon pushing the changes, actions will kick off your training and deployment run. Check the actions tab to view if your actions have successfully run.
 
-Comment lines 39 to 55 in your <a href="/.github/workflows/train_deploy.yml">`"/.github/workflows/train_deploy.yml"` file</a> ff you only want to train the model. Uncomment line 7 to 8, if you only want to kick off the workflow when pushing changes to the `"/code/"` file.
+Comment lines 39 to 55 in your <a href="/.github/workflows/train_deploy.yml">`"/.github/workflows/train_deploy.yml"` file</a> if you only want to train the model. Uncomment line 7 to 8, if you only want to kick off the workflow when pushing changes to the `"/code/"` file.
 
 ### 6. Viewing your AML resources and runs
 
