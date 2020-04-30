@@ -36,9 +36,8 @@ A service principal (SP) needs to be generated for authentication and getting ac
 Navigate to the [Azure Portal](portal.azure.com) to find the details of your resource group or workspace. Create a Machine Learning workspace if you haven't already. 
 
 To check ownership of your workspace, enter your workspace, navigate to Access Control(IAM) on the left hand column. In the box titled *'Add a role assignment'*, you need to be able to click *'Add'*. If you can't, you are not owner of your workspace and will not be able to create a service principal. 
-<p align="center">
-  <img src="https://help.github.com/assets/images/help/repository/workspace-permissions.png" width="500"/>
-</p>
+
+![Alt text](/docs/images/workspace-permissions.png "Workspace Permissions")
 
 docs/images/workspace-overview.png
 
@@ -50,9 +49,7 @@ We suggest using the AZ CLI to create your SP auth. You will need these three th
 
 **{resource-group}**= *Workspace > Overview > resource group*
 
-<p align="center">
-  <img src="https://help.github.com/assets/images/help/repository/workspace-overview.png" width="500"/>
-</p>
+![Alt text](/docs/images/workspace-overview.png "Workspace Overview")
 
 Fire up the Cloud CLI or install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)(recommended) on your computer and execute the following command to generate the required credentials:
 
