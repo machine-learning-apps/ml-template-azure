@@ -15,6 +15,7 @@ This template can be used for easily setting up a data science or machine learni
 The following prerequisites are required to make this repository work:
 - Azure subscription
 - Contributor access to the Azure subscription
+- Owner permissions for the workspace you are trying to automate 
 - Access to [GitHub Actions](https://github.com/features/actions)
 
 If you don’t have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://aka.ms/AMLFree) today.
@@ -27,9 +28,24 @@ To get started with ML Ops, simply create a new repo based off this template, by
   <img src="https://help.github.com/assets/images/help/repository/use-this-template-button.png" alt="GitHub Template repository" width="700"/>
 </p>
 
-### 3. Setting up the required secrets
+### 3. Setting up the required secrets/authentication
 
-A service principal needs to be generated for authentication and getting access to your Azure subscription. We suggest adding a service principal with contributor rights to a new resource group or to the one where you have deployed your existing Azure Machine Learning workspace. Just go to the Azure Portal to find the details of your resource group or workspace. Then start the Cloud CLI or install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your computer and execute the following command to generate the required credentials:
+A service principal (SP) needs to be generated for authentication and getting access to your Azure subscription. We suggest adding a service principal with contributor rights to a new resource group or to the one where you have deployed your existing Azure Machine Learning workspace. 
+
+Navigate to the [Azure Portal](portal.azure.com) to find the details of your resource group or workspace. Create a Machine Learning workspace if you haven't already. 
+
+To check ownership of your workspace, enter your workspace, navigate to Access Control(IAM) on the left hand column. In the box titled 'Add a role assignment", you need to be able to click 'Add'. If you cant't, you are not owner of your workspace and will not be able to create a service principal. 
+
+We suggest using the AZ CLI to create your SP auth. You will need these three things:
+1. {service-principal-name} = user-defined name for your service principal (e.g.workspacename_SPauth)
+2. {subscription-id} = Workspace > Overview > subscription ID 
+3. {resource-group} = Workspace > Overview > resource group
+
+Fire up the Cloud CLI or (recommended) install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your computer and execute the following command to generate the required credentials:
+
+[Additional Service Principal instructions can be found here](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/manage-azureml-service/authentication-in-azureml/authentication-in-azureml.ipynb
+), in the section titled 'Service Principal Authentication'
+
 
 ```sh
 # Replace {service-principal-name}, {subscription-id} and {resource-group} with your 
@@ -58,24 +74,49 @@ Add this JSON output as [a secret](https://help.github.com/en/actions/configurin
   <img src="docs/images/secrets.png" alt="GitHub Template repository" width="700"/>
 </p>
 
-To do so, click on the Settings tab in your repository, then click on Secrets and finally add the new secret with the name `AZURE_CREDENTIALS` to your repository.
-
-Please follow [this link](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) for more details. 
+To do so, click on the Settings tab in your repository, then click on Secrets and finally add the new secret with the name `AZURE_CREDENTIALS` to your repository. More [information on GitHub secrets can be found here](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) for more details. 
 
 ### 4. Define your workspace parameters
 
-You have to modify the parameters in the <a href="/.cloud/.azure/workspace.json">`/.cloud/.azure/workspace.json"` file</a> in your repository, so that the GitHub Actions create or connect to the desired Azure Machine Learning workspace. Just click on the link and edit the file.
+You will need to modify your `workspace.json` file
 
-Please use the same value for the `resource_group` parameter that you have used when generating the azure credentials. If you already have an Azure ML Workspace under that resource group, change the `name` parameter in the JSON file to the name of your workspace, if you want the Action to create a new workspace in that resource group, pick a name for your new workspace, and assign it to the `name` parameter. You can also delete the `name` parameter, if you want the action to use the default value, which is the repository name.
+Location: <a href="/.cloud/.azure/workspace.json">`/.cloud/.azure/workspace.json"` file</a> in your repository
 
-Once you save your changes to the file, the predefined GitHub workflow that trains and deploys a model on Azure Machine Learning gets triggered. Check the actions tab to view if your actions have successfully run.
+This is necessary so that your GitHub Actions will connect to your desired AzureML workspace. Click on the link and make your edits:
+
+```sh
+{
+   #NOTE: use the same value for the `resource_group` parameter 
+   #that you have used when generating the azure credentials.
+
+   #If you want the Action to create a new workspace in that resource group, 
+   #pick a name for your new workspace, and assign it to the `name` parameter. 
+
+   #You can also delete the `name` parameter, 
+   #if you want the action to use the default value, which is the repository name.
+   "name": "your-workspace-name",
+   #change the `name` parameter in the JSON file to the name of your workspace, 
+    "resource_group": "your-resource-group",
+   #this stays the same
+    "create_workspace": true
+}
+```
+
+Once you save your changes to the file, the predefined GitHub workflow that trains and deploys a model on Azure Machine Learning gets triggered. 
+
+Check the actions tab to view if your actions have successfully run.
 
 ### 5. Modify the code
 
-Now you can start modifying the code in the <a href="/code">`code` folder</a>, so that your model and not the provided sample model gets trained on Azure. Where required, modify the environment yaml so that the training and deployment environments will have the correct packages installed in the conda environment for your training and deployment.
-Upon pushing the changes, actions will kick off your training and deployment run. Check the actions tab to view if your actions have successfully run.
+Now you can start modifying the code in the <a href="/code">`code` folder</a>, so that your model and not the provided sample model gets trained on Azure. 
 
-Comment lines 39 to 55 in your <a href="/.github/workflows/train_deploy.yml">`"/.github/workflows/train_deploy.yml"` file</a> if you only want to train the model. Uncomment line 7 to 8, if you only want to kick off the workflow when pushing changes to the `"/code/"` file.
+Where required, modify the environment yaml so that the training and deployment environments will have the correct packages installed in the conda environment for your training and deployment.
+
+Upon pushing the changes, actions will kick off your training and deployment run. 
+
+Check the actions tab to view if your actions have successfully run.
+
+OPTIONAL: Comment lines 39 to 55 in your <a href="/.github/workflows/train_deploy.yml">`"/.github/workflows/train_deploy.yml"` file</a> if you only want to train the model. Uncomment line 7 to 8, if you only want to kick off the workflow when pushing changes to the `"/code/"` file.
 
 ### 6. Viewing your AML resources and runs
 
