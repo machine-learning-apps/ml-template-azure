@@ -40,6 +40,8 @@ To check ownership of your workspace, enter your workspace, navigate to Access C
   <img src="https://help.github.com/assets/images/help/repository/workspace-permissions.png" alt="GitHub Template repository" width="700"/>
 </p>
 
+docs/images/workspace-overview.png
+
 We suggest using the AZ CLI to create your SP auth. You will need these three things:
 
 **{service-principal-name}** = user-defined name for your service principal (e.g.workspacename_SPauth)
