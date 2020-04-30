@@ -39,8 +39,6 @@ To check ownership of your workspace, enter your workspace, navigate to Access C
 
 ![Alt text](/docs/images/workspace-permissions.png "Workspace Permissions")
 
-docs/images/workspace-overview.png
-
 We suggest using the AZ CLI to create your SP auth. You will need these three things:
 
 **{service-principal-name}** = user-defined name for your service principal (e.g.workspacename_SPauth)
