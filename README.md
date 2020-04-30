@@ -19,12 +19,11 @@ The following prerequisites are required to make this repository work:
 - Access to [GitHub Actions](https://github.com/features/actions)
 
 If you don’t have an Azure subscription, create a free account before you begin. 
-
 Try the [free or paid version of Azure Machine Learning](https://aka.ms/AMLFree) today.
 
 ### 2. Create repository
 
-To get started with ML Ops, simply create a new repo based off this template, by clicking on the green *'Use this template'* button:
+Create a new repo based off this template, by clicking on the green *'Use this template'* button:
 
 <p align="center">
   <img src="https://help.github.com/assets/images/help/repository/use-this-template-button.png" alt="GitHub Template repository" width="700"/>
@@ -36,12 +35,22 @@ A service principal (SP) needs to be generated for authentication and getting ac
 
 Navigate to the [Azure Portal](portal.azure.com) to find the details of your resource group or workspace. Create a Machine Learning workspace if you haven't already. 
 
-To check ownership of your workspace, enter your workspace, navigate to Access Control(IAM) on the left hand column. In the box titled *'Add a role assignment'*, you need to be able to click *'Add'*. If you cant't, you are not owner of your workspace and will not be able to create a service principal. 
+To check ownership of your workspace, enter your workspace, navigate to Access Control(IAM) on the left hand column. In the box titled *'Add a role assignment'*, you need to be able to click *'Add'*. If you can't, you are not owner of your workspace and will not be able to create a service principal. 
+<p align="center">
+  <img src="https://help.github.com/assets/images/help/repository/workspace-permissions.png" alt="GitHub Template repository" width="700"/>
+</p>
 
 We suggest using the AZ CLI to create your SP auth. You will need these three things:
+
 **{service-principal-name}** = user-defined name for your service principal (e.g.workspacename_SPauth)
+
 **{subscription-id}** = *Workspace > Overview > subscription ID*
+
 **{resource-group}**= *Workspace > Overview > resource group*
+
+<p align="center">
+  <img src="https://help.github.com/assets/images/help/repository/workspace-overview.png" alt="GitHub Template repository" width="700"/>
+</p>
 
 Fire up the Cloud CLI or install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)(recommended) on your computer and execute the following command to generate the required credentials:
 
@@ -88,21 +97,18 @@ This is necessary so that your GitHub Actions will connect to your desired Azure
 
 ```sh
 {
-   #NOTE: use the same value for the `resource_group` parameter 
-   #that you have used when generating the azure credentials.
-
-   #If you want the Action to create a new workspace in that resource group, 
-   #pick a name for your new workspace, and assign it to the `name` parameter. 
-
-   #You can also delete the `name` parameter, 
-   #if you want the action to use the default value, which is the repository name.
+   #same value for your-workspace-name as above
    "name": "your-workspace-name",
-   #change the `name` parameter in the JSON file to the name of your workspace, 
+   #same resource group as above
     "resource_group": "your-resource-group",
    #this stays the same
     "create_workspace": true
 }
 ```
+If you want the Action to create a new workspace in that resource group, 
+pick a name for your new workspace, and assign it to the `name` parameter. 
+You can also delete the `name` parameter, if you want the action to use the defau
+value, which is the repository name.
 
 Once you save your changes to the file, the predefined GitHub workflow that trains and deploys a model on Azure Machine Learning gets triggered. 
 
