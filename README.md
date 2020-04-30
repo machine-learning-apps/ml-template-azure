@@ -18,11 +18,13 @@ The following prerequisites are required to make this repository work:
 - Owner permissions for the workspace you are trying to automate 
 - Access to [GitHub Actions](https://github.com/features/actions)
 
-If you don’t have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://aka.ms/AMLFree) today.
+If you don’t have an Azure subscription, create a free account before you begin. 
+
+Try the [free or paid version of Azure Machine Learning](https://aka.ms/AMLFree) today.
 
 ### 2. Create repository
 
-To get started with ML Ops, simply create a new repo based off this template, by clicking on the green "Use this template" button:
+To get started with ML Ops, simply create a new repo based off this template, by clicking on the green *'Use this template'* button:
 
 <p align="center">
   <img src="https://help.github.com/assets/images/help/repository/use-this-template-button.png" alt="GitHub Template repository" width="700"/>
@@ -34,18 +36,14 @@ A service principal (SP) needs to be generated for authentication and getting ac
 
 Navigate to the [Azure Portal](portal.azure.com) to find the details of your resource group or workspace. Create a Machine Learning workspace if you haven't already. 
 
-To check ownership of your workspace, enter your workspace, navigate to Access Control(IAM) on the left hand column. In the box titled 'Add a role assignment", you need to be able to click 'Add'. If you cant't, you are not owner of your workspace and will not be able to create a service principal. 
+To check ownership of your workspace, enter your workspace, navigate to Access Control(IAM) on the left hand column. In the box titled *'Add a role assignment'*, you need to be able to click *'Add'*. If you cant't, you are not owner of your workspace and will not be able to create a service principal. 
 
 We suggest using the AZ CLI to create your SP auth. You will need these three things:
-1. {service-principal-name} = user-defined name for your service principal (e.g.workspacename_SPauth)
-2. {subscription-id} = Workspace > Overview > subscription ID 
-3. {resource-group} = Workspace > Overview > resource group
+**{service-principal-name}** = user-defined name for your service principal (e.g.workspacename_SPauth)
+**{subscription-id}** = *Workspace > Overview > subscription ID*
+**{resource-group}**= *Workspace > Overview > resource group*
 
-Fire up the Cloud CLI or (recommended) install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your computer and execute the following command to generate the required credentials:
-
-[Additional Service Principal instructions can be found here](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/manage-azureml-service/authentication-in-azureml/authentication-in-azureml.ipynb
-), in the section titled 'Service Principal Authentication'
-
+Fire up the Cloud CLI or install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)(recommended) on your computer and execute the following command to generate the required credentials:
 
 ```sh
 # Replace {service-principal-name}, {subscription-id} and {resource-group} with your 
@@ -67,6 +65,8 @@ This will generate the following JSON output:
   (...)
 }
 ```
+[Additional Service Principal instructions can be found here](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/manage-azureml-service/authentication-in-azureml/authentication-in-azureml.ipynb
+), in the section titled 'Service Principal Authentication'
 
 Add this JSON output as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) with the name `AZURE_CREDENTIALS` in your GitHub repository:
 
@@ -74,7 +74,9 @@ Add this JSON output as [a secret](https://help.github.com/en/actions/configurin
   <img src="docs/images/secrets.png" alt="GitHub Template repository" width="700"/>
 </p>
 
-To do so, click on the Settings tab in your repository, then click on Secrets and finally add the new secret with the name `AZURE_CREDENTIALS` to your repository. More [information on GitHub secrets can be found here](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) for more details. 
+To do so, click on the Settings tab in your repository, then click on Secrets and finally add the new secret with the name `AZURE_CREDENTIALS` to your repository. 
+
+More [information on GitHub secrets can be found here](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets). 
 
 ### 4. Define your workspace parameters
 
