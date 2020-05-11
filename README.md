@@ -39,7 +39,9 @@ Navigate to the [Azure Portal](https://www.portal.azure.com/) to find the detail
 
 ![Alt text](/docs/images/workspace-permissions.png "Workspace Permissions")
 
-**Service Principal (SP) Authentication**We suggest using the AZ CLI to create your SP . [Additional SP instructions can be found here](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/manage-azureml-service/authentication-in-azureml/authentication-in-azureml.ipynb
+**Service Principal (SP) Authentication**
+We suggest using the AZ CLI to create your SP. 
+[Additional SP instructions can be found here](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/manage-azureml-service/authentication-in-azureml/authentication-in-azureml.ipynb
 ), in the section titled 'Service Principal Authentication'
 
 **You will need these three things to create your SP in the CLI:**
