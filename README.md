@@ -97,14 +97,14 @@ This is necessary so that your GitHub Actions will connect to your desired Azure
    #same value for your-workspace-name as above
    "name": "your-workspace-name",
    #same resource group as above
-    "resource_group": "your-resource-group",
+   "resource_group": "your-resource-group",
    #this stays the same
-    "create_workspace": true
+   "create_workspace": true
 }
 ```
 If you want the Action to create a new workspace in that resource group, 
 pick a name for your new workspace, and assign it to the `name` parameter. 
-You can also delete the `name` parameter, if you want the action to use the defau
+You can also delete the `name` parameter, if you want the action to use the default
 value, which is the repository name.
 
 Once you save your changes to the file, the predefined GitHub workflow that trains and deploys a model on Azure Machine Learning gets triggered. 
