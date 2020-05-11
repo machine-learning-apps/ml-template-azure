@@ -33,19 +33,20 @@ Create a new repo based off this template, by clicking on the green *'Use this t
 
 A service principal (SP) needs to be generated for authentication and getting access to your Azure subscription. We suggest adding a service principal with contributor rights to a new resource group or to the one where you have deployed your existing Azure Machine Learning workspace. 
 
-Navigate to the [Azure Portal](portal.azure.com) to find the details of your resource group or workspace. Create a Machine Learning workspace if you haven't already. 
+Navigate to the [Azure Portal](https://www.portal.azure.com/) to find the details of your resource group or workspace. Create a Machine Learning workspace if you haven't already. 
 
-To check ownership of your workspace, enter your workspace, navigate to Access Control(IAM) on the left hand column. In the box titled *'Add a role assignment'*, you need to be able to click *'Add'*. If you can't, you are not owner of your workspace and will not be able to create a service principal. 
+**Note:** To check ownership of your workspace, enter your workspace, navigate to Access Control(IAM) on the left hand column. In the box titled *'Add a role assignment'*, you need to be able to click *'Add'*. If you can't, you are not owner of your workspace and will not be able to create a service principal. 
 
 ![Alt text](/docs/images/workspace-permissions.png "Workspace Permissions")
 
-We suggest using the AZ CLI to create your SP auth. You will need these three things:
+We suggest using the AZ CLI to create your SP auth. [Additional Service Principal instructions can be found here](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/manage-azureml-service/authentication-in-azureml/authentication-in-azureml.ipynb
+), in the section titled 'Service Principal Authentication'
 
-**{service-principal-name}** = user-defined name for your service principal (e.g.workspacename_SPauth)
+You will need these three things:
 
-**{subscription-id}** = *Workspace > Overview > subscription ID*
-
-**{resource-group}**= *Workspace > Overview > resource group*
+- **{service-principal-name}** = user-defined name for your service principal (e.g.workspacename_SPauth)
+- **{subscription-id}** = *Workspace > Overview > subscription ID*
+- **{resource-group}**= *Workspace > Overview > resource group*
 
 ![Alt text](/docs/images/workspace-overview.png "Workspace Overview")
 
@@ -71,8 +72,6 @@ This will generate the following JSON output:
   (...)
 }
 ```
-[Additional Service Principal instructions can be found here](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/manage-azureml-service/authentication-in-azureml/authentication-in-azureml.ipynb
-), in the section titled 'Service Principal Authentication'
 
 Add this JSON output as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) with the name `AZURE_CREDENTIALS` in your GitHub repository:
 
