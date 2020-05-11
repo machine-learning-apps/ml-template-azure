@@ -39,10 +39,10 @@ Navigate to the [Azure Portal](https://www.portal.azure.com/) to find the detail
 
 ![Alt text](/docs/images/workspace-permissions.png "Workspace Permissions")
 
-We suggest using the AZ CLI to create your SP auth. [Additional Service Principal instructions can be found here](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/manage-azureml-service/authentication-in-azureml/authentication-in-azureml.ipynb
+**Service Principal (SP) Authentication**We suggest using the AZ CLI to create your SP . [Additional SP instructions can be found here](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/manage-azureml-service/authentication-in-azureml/authentication-in-azureml.ipynb
 ), in the section titled 'Service Principal Authentication'
 
-You will need these three things:
+**You will need these three things to create your SP in the CLI:**
 
 - **{service-principal-name}** = user-defined name for your service principal (e.g.workspacename_SPauth)
 - **{subscription-id}** = *Workspace > Overview > subscription ID*
@@ -112,7 +112,7 @@ Check the actions tab to view if your actions have successfully run.
 
 ### 5. Modify the code
 
-Now you can start modifying the code in the <a href="/code">`code` folder</a>, so that your model and not the provided sample model gets trained on Azure. 
+Now you can start modifying the code in the <a href="/code">`code folder`</a>, so that your model and not the provided sample model gets trained on Azure. 
 
 Where required, modify the environment yaml so that the training and deployment environments will have the correct packages installed in the conda environment for your training and deployment.
 
