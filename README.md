@@ -77,9 +77,9 @@ This will generate the following JSON output:
 }
 ```
 
-Add this JSON output as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) 
+Add this JSON output as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) in your GitHub repository with the name `AZURE_CREDENTIALS`
 
-**Note:** your new secret must be named `AZURE_CREDENTIALS` in your GitHub repository:
+**Note:** your secret must be named `AZURE_CREDENTIALS` for the GitHub Action to work correctly:
 
 <p align="center">
   <img src="docs/images/secrets.png" alt="GitHub Template repository" width="700"/>
