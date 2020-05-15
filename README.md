@@ -85,7 +85,7 @@ Add this JSON output as [a secret](https://help.github.com/en/actions/configurin
 
 To do so, click on the Settings tab in your repository, then click on Secrets and finally add the new secret with the name `AZURE_CREDENTIALS` to your repository. 
 
-**Note:** your secret must be named `AZURE_CREDENTIALS` for the GitHub Action to work correctly:
+**Note:** your secret must be named `AZURE_CREDENTIALS` for the GitHub Action to work correctly
 
 More [information on GitHub secrets can be found here](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets). 
 
