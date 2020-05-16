@@ -29,36 +29,38 @@ Create a new repo based off this template, by clicking on the green *'Use this t
   <img src="https://help.github.com/assets/images/help/repository/use-this-template-button.png" alt="GitHub Template repository" width="700"/>
 </p>
 
-### 3. Setting up the required secrets/authentication
+### 3. Setting up GitHub Secrets & Azure Service Principal Authentication (SP)
 
-A service principal (SP) needs to be generated for authentication and getting access to your Azure subscription. We suggest adding a service principal with contributor rights to a new resource group or to the one where you have deployed your existing Azure Machine Learning workspace. 
+A service principal (SP) needs to be generated for authentication and accessing your Azure subscription. We suggest adding a service principal with contributor rights to a new resource group, or to the one where you have deployed your existing Azure Machine Learning workspace. 
 
 Navigate to the [Azure Portal](https://www.portal.azure.com/) to find the details of your resource group or workspace. Create a Machine Learning workspace if you haven't already. 
 
-**Note:** To check ownership of your workspace, enter your workspace, navigate to Access Control(IAM) on the left hand column. In the box titled *'Add a role assignment'*, you need to be able to click *'Add'*. If you can't, you are not owner of your workspace and will not be able to create a service principal. 
+**Note:** If you can't add a role assignment, you are not permissioned with the ability to create a service principal. Contact your IT admin to remedy this. *(workspace > 'Access Control(IAM)' > 'Add a role assignment' > **'Add'**)*. 
 
-![Alt text](/docs/images/workspace-permissions.png "Workspace Permissions")
+<p align="center">
+  <img src="/docs/images/workspace-permissions.png" alt="Workspace Permissions" width="550"/>
+</p>
 
-**Service Principal (SP) Authentication**
+**Service Principal (SP) Authentication using AZ CLI**
 
-We suggest using the AZ CLI to create your SP. 
+[Additional SP setup methods can be found here](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/manage-azureml-service/authentication-in-azureml/authentication-in-azureml.ipynb
+), in the section titled 'Service Principal Authentication'.
 
-[Additional SP instructions can be found here](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/manage-azureml-service/authentication-in-azureml/authentication-in-azureml.ipynb
-), in the section titled 'Service Principal Authentication'
+**You will need the following to create your SP in the AZ CLI:**
 
-**You will need these three things to create your SP in the CLI:**
-
-- **{service-principal-name}** = user-defined name for your service principal (e.g.workspacename_SPauth)
+- **{service-principal-name}** = pick a new name for your service principal (e.g.workspacename_SPauth)
 - **{subscription-id}** = *Workspace > Overview > subscription ID*
 - **{resource-group}**= *Workspace > Overview > resource group*
 
-![Alt text](/docs/images/workspace-overview.png "Workspace Overview")
+<p align="center">
+  <img src="/docs/images/workspace-overview.png" alt="Workspace Overview" width="550"/>
+</p>
 
-Fire up the Cloud CLI or install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)(recommended) on your computer and execute the following command to generate the required credentials:
+Install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)(recommended) on your computer **or** use the Cloud CLI
+
+Execute the following command to generate the required credentials for your GitHub Action:
 
 ```sh
-# Replace {service-principal-name}, {subscription-id} and {resource-group} with your 
-# Azure subscription id and resource group name and any name for your service principle
 az ad sp create-for-rbac --name {service-principal-name} \
                          --role contributor \
                          --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group} \
@@ -77,15 +79,13 @@ This will generate the following JSON output:
 }
 ```
 
-Add this JSON output as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) in your GitHub repository with the name `AZURE_CREDENTIALS`
+Add this JSON output as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) in your GitHub repository with the name `AZURE_CREDENTIALS`. (*Settings >'Secrets' > add `AZURE_CREDENTIALS`*). 
+
+**Note:** your secret must be named `AZURE_CREDENTIALS` for the GitHub Action to work correctly
 
 <p align="center">
   <img src="docs/images/secrets.png" alt="GitHub Template repository" width="700"/>
 </p>
-
-To do so, click on the Settings tab in your repository, then click on Secrets and finally add the new secret with the name `AZURE_CREDENTIALS` to your repository. 
-
-**Note:** your secret must be named `AZURE_CREDENTIALS` for the GitHub Action to work correctly
 
 More [information on GitHub secrets can be found here](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets). 
 
@@ -95,22 +95,20 @@ You will need to modify your `workspace.json` file
 
 Location: <a href="/.cloud/.azure/workspace.json">`/.cloud/.azure/workspace.json"` file</a> in your repository
 
-This is necessary so that your GitHub Actions will connect to your desired AzureML workspace. Click on the link and make your edits:
+Your GitHub Actions will use this to connect to your desired AzureML workspace. You will need the following:
 
+- **{name}** = same value for your workspace name (as above), **or** pick a new name for your new workspace. You can also delete the `name` parameter, if you want the action to use the default value, which is the repository name.
+- **{resource_group}** = same resource group as above
+- **{create_workspace}**= this stays unchanged
+
+Make your edits to `workspace.json`:
 ```sh
 {
-   #same value for your-workspace-name as above
    "name": "your-workspace-name",
-   #same resource group as above
    "resource_group": "your-resource-group",
-   #this stays the same
    "create_workspace": true
 }
 ```
-If you want the Action to create a new workspace in that resource group, 
-pick a name for your new workspace, and assign it to the `name` parameter. 
-You can also delete the `name` parameter, if you want the action to use the default
-value, which is the repository name.
 
 Once you save your changes to the file, the predefined GitHub workflow that trains and deploys a model on Azure Machine Learning gets triggered. 
 
@@ -130,7 +128,7 @@ OPTIONAL: Comment lines 39 to 55 in your <a href="/.github/workflows/train_deplo
 
 ### 6. Viewing your AML resources and runs
 
-The log outputs of your action will provide URLs for you to view the resources that have been created in AML. Alternatively, you can visit the [Machine Learning Studio](https://ml.azure.com/) to view the progress of your runs, etc. For more details, read the documentation below.
+The log outputs of your action will provide URLs for you to view the resources that have been created in AML. Alternatively, you can visit the [Machine Learning Studio](https://ml.azure.com/) to view the progress of your runs, etc. 
 
 # Documentation
 
@@ -174,7 +172,7 @@ Message: ***'error': ***'code': 'MissingSubscriptionRegistration', 'message': "T
 ```
 Solution:
 
-This error message appears, in case the `Azure/aml-workspace` action tries to create a new Azure Machine Learning workspace in your resource group and you have never deployed a Key Vault in the subscription before. We recommend to create an Azure Machine Learning workspace manually in the Azure Portal. Follow the [steps on this website](https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-1st-experiment-sdk-setup#create-a-workspace) to create a new workspace with the desired name. After ou have successfully completed the steps, you have to make sure, that your Service Principal has access to the resource group and that the details in your <a href="/.cloud/.azure/workspace.json">`/.cloud/.azure/workspace.json"` file</a> are correct and point to the right workspace and resource group.
+This error message appears, in case the `Azure/aml-workspace` action tries to create a new Azure Machine Learning workspace in your resource group and you have never deployed a Key Vault in the subscription before. We recommend to create an Azure Machine Learning workspace manually in the Azure Portal. Follow the [steps on this website](https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-1st-experiment-sdk-setup#create-a-workspace) to create a new workspace with the desired name. After you have successfully completed the steps, you have to make sure, that your Service Principal has access to the resource group and that the details in your <a href="/.cloud/.azure/workspace.json">`/.cloud/.azure/workspace.json"` file</a> are correct and point to the right workspace and resource group.
 
 # What is MLOps?
 
