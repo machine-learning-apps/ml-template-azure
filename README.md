@@ -10,6 +10,11 @@ This template can be used for easily setting up a data science or machine learni
 
 # Getting started
 
+### YouTube Video
+
+Click on the image to view the video on YouTube. The video shows you the setup process, which is also described below:
+[![Azure Machine Learning GitHub Actions - Setup Guide](http://img.youtube.com/vi/bmFr0LYo_6o/maxresdefault.jpg)](http://www.youtube.com/watch?v=bmFr0LYo_6o "Azure Machine Learning GitHub Actions - Setup Guide")
+
 ### 1. Prerequisites
 
 The following prerequisites are required to make this repository work:
