@@ -75,7 +75,9 @@ Please use the same value for the `resource_group` parameter that you have used 
 
 Once you save your changes to the file, the predefined GitHub workflow that trains and deploys a model on Azure Machine Learning gets triggered. Check the actions tab to view if your actions have successfully run.
 
-![Actions tab](link-to-image)
+<p align="center">
+  <img src="docs/images/actions_tab.png" alt="GitHub Actions Tab" width="700"/>
+</p>
 
 ### 5. Modify the code
 
