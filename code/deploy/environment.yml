@@ -4,12 +4,12 @@
 name: deployment_env
 dependencies:
   - python=3.6.2
-  - scikit-learn=0.22.2
-  - numpy=1.18.1
+  - scikit-learn=0.23.2
+  - numpy=1.19.4
   - pip:
-    - azureml-defaults==1.1.5
-    - azureml-monitoring==0.1.0a18
-    - inference-schema==1.0.2
-    - inference-schema[numpy-support]==1.0.2
+    - azureml-defaults==1.19.0
+    - azureml-monitoring==0.1.0a21
+    - inference-schema==1.1.0
+    - inference-schema[numpy-support]==1.1.0
 channels:
   - conda-forge
