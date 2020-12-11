@@ -1,5 +1,5 @@
 from azureml.core import ComputeTarget
-from azureml.train.estimator import Estimator
+from azureml.core import ScriptRunConfig, Environment
 
 
 def main(workspace):
@@ -10,20 +10,28 @@ def main(workspace):
         name="githubcluster"
     )
 
+    # Loading Environment
+    print("Loading Environment")
+    environment = Environment.from_conda_specification(
+        name="myenv",
+        file_path="code/train/environment.yml"
+    )
+
     # Loading script parameters
     print("Loading script parameters")
-    script_params = {
-        "--kernel": "linear",
-        "--penalty": 1.0
-    }
+    script_args = [
+        "--kernel", "linear",
+        "--penalty", 1.0
+    ]
 
-    # Creating experiment config
-    print("Creating experiment config")
-    estimator = Estimator(
+    # Creating run config
+    print("Creating run config")
+    run_config = ScriptRunConfig(
         source_directory="code/train",
-        entry_script="train.py",
-        script_params=script_params,
+        script="train.py",
+        arguments=script_args,
+        run_config="",
         compute_target=compute_target,
-        conda_dependencies_file="environment.yml"
+        environment=environment
     )
-    return estimator
+    return run_config
