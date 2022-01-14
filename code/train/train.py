@@ -71,8 +71,8 @@ def main(args):
     os.makedirs('outputs', exist_ok=True)
     
     # Log arguments
-    run.log('Kernel type', np.str(args.kernel))
-    run.log('Penalty', np.float(args.penalty))
+    run.log('Kernel type', str(args.kernel))
+    run.log('Penalty', float(args.penalty))
 
     # Load iris dataset
     X, y = datasets.load_iris(return_X_y=True)
@@ -89,7 +89,7 @@ def main(args):
     # accuracy for X_test
     accuracy = svm_model.score(data['test']['X'], data['test']['y'])
     print('Accuracy of SVM classifier on test set: {:.2f}'.format(accuracy))
-    run.log('Accuracy', np.float(accuracy))
+    run.log('Accuracy', float(accuracy))
     
     # precision for X_test
     precision = precision_score(svm_predictions, data["test"]["y"], average='weighted')
@@ -109,7 +109,7 @@ def main(args):
     # create a confusion matrix
     labels = ['Iris-setosa', 'Iris-versicolor', 'Iris-virginica']
     labels_numbers = [0, 1, 2]
-    cm = confusion_matrix(y_test, svm_predictions, labels_numbers)
+    cm = confusion_matrix(y_true=y_test, y_pred=svm_predictions, labels=labels_numbers)
     log_confusion_matrix(cm, labels)
     
     # files saved in the "outputs" folder are automatically uploaded into run history
