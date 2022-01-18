@@ -41,7 +41,7 @@ environment:
     # Set True to perform this run inside a Docker container.
     enabled: true
     # Base image used for Docker-based runs. Mutually exclusive with base_dockerfile.
-    baseImage: mcr.microsoft.com/azureml/base:intelmpi2018.3-ubuntu16.04
+    baseImage: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04
     # Base Dockerfile used for Docker-based runs. Mutually exclusive with base_image
     baseDockerfile:
     # Set False if necessary to work around shared volume bugs.
